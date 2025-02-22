@@ -4,6 +4,8 @@ import './index.css'
 import App from './App.tsx'
 import { ConvexProvider, ConvexReactClient } from 'convex/react'
 
+// ConvexProviderを作成することで、Convexサーバと通信できるようにする。
+// Appをラップし、どのコンポーネントからでもConvexのAPIを呼び出せるようにする。
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string)
 
