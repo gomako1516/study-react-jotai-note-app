@@ -8,3 +8,4 @@ export const notesAtom = atom<Note[]>([]) // 状態「noteAtom」を定義
 
 // noteAtomを更新したい → useSetAtom(noteAtom)
 // noteAtomの値を取得したい → useAtomValue(noteAtom)
+// noteAtomの値を更新・取得したい → [note, setNote] = useAtom()

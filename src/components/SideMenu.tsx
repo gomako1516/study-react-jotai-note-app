@@ -1,5 +1,8 @@
-import { useAtomValue } from 'jotai'
+import { useAtom } from 'jotai'
 import { notesAtom } from '../store'
+import { useMutation } from 'convex/react'
+import { api } from '../../convex/_generated/api'
+import { Note } from '../domain/note'
 
 const SideMenu = () => {
 
@@ -8,13 +11,32 @@ const SideMenu = () => {
   // notesAtomの値が変更されると、再レンダリングされ、最新の値が反映される
   // 更新したい場合はuseSetAtomで更新用関数を取得する
 
-  const notes = useAtomValue(notesAtom) // notesAtomの現在の値を取得
+  // 状態（Atom）を取得するための関数
+  // notes：現在の値（状態）
+  // setState：状態を更新するための関数
+  const [notes, setNotes] = useAtom(notesAtom)
+
+  // データをインサート（追加）する関数「create」を呼び出す
+  const createNote = useMutation(api.notes.create)
+
+  const handleCreateNote = async () => {
+    const noteId = await createNote({
+      title: 'Untitled',
+      content: ''
+    })
+
+    // クラス「Note」を使用して、新しいメモのオブジェクトを作成
+    const newNote = new Note(noteId, 'Untitled', '', Date.now())
+
+    // noteAtomの値を更新→再レンダリングされる
+    setNotes((prev) => [...prev, newNote])
+  }
 
   return (
     <div className='w-64 h-screen bg-gray-100 p-4 flex flex-col'>
       <div>
         <h2>Notes</h2>
-        <button>+</button>
+        <button onClick={handleCreateNote}>+</button>
       </div>
       <div>
         {notes?.map((note) => (
