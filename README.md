@@ -1,9 +1,9 @@
-状態管理ライブラリ「Jotai」のハンズオンアプリ。
+状態管理ライブラリ「Jotai」のハンズオンアプリ。  
 https://qiita.com/Sicut_study/items/ee41f1bb59fcda45a50b
 
 # Convex
-https://dashboard.convex.dev/t/gomako1516
-バックエンドサービス「Convex」を使い、データベースを作成し、Reactアプリに表示させる。
+https://dashboard.convex.dev/t/gomako1516  
+バックエンドサービス「Convex」を使い、データベースを作成し、Reactアプリに表示させる。 
 TypeScriptで実装できる人気のライブラリ。
 
 ## 手順
@@ -16,5 +16,5 @@ TypeScriptで実装できる人気のライブラリ。
 7. データを取得・表示。
 
 ## npx convex dev
-バックエンドとAPIをローカル上で動かす。
+バックエンドとAPIをローカル上で動かす。  
 convexディレクトリ内のファイルを編集が自動的に反映される。
