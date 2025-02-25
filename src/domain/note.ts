@@ -1,5 +1,7 @@
 // Noteクラス
 
+import { Id } from "../../convex/_generated/dataModel";
+
 // クラスを定義する理由
 // - データ構造を統一するため
 // - 型安全にするため
@@ -10,7 +12,7 @@
 
 export class Note {
   constructor(
-    public id: string,
+    public id: Id<'notes'>, // ConvexのIDの型「Id」を使用
     public title: string,
     public content: string,
     public lastEditTime: number,

@@ -3,6 +3,7 @@ import { notesAtom } from '../store'
 import { useMutation } from 'convex/react'
 import { api } from '../../convex/_generated/api'
 import { Note } from '../domain/note'
+import { Id } from '../../convex/_generated/dataModel'
 
 const SideMenu = () => {
 
@@ -19,6 +20,10 @@ const SideMenu = () => {
   // データをインサート（追加）する関数「create」を呼び出す
   const createNote = useMutation(api.notes.create)
 
+  // データを削除する関数「deleteNote」を呼び出す
+  const deleteNote = useMutation(api.notes.deleteNote)
+
+  // データを追加する処理
   const handleCreateNote = async () => {
     const noteId = await createNote({
       title: 'Untitled',
@@ -30,6 +35,12 @@ const SideMenu = () => {
 
     // noteAtomの値を更新→再レンダリングされる
     setNotes((prev) => [...prev, newNote])
+  }
+
+  // データを削除する処理
+  const handleDeleteNote = async (noteId: Id<'notes'>) => {
+    await deleteNote({ noteId })
+    setNotes((prev) => prev.filter((n) => n.id !== noteId))
   }
 
   return (
@@ -54,7 +65,7 @@ const SideMenu = () => {
                 }
               </p>
             </div>
-            <button>-</button>
+            <button onClick={() => handleDeleteNote(note.id)}>-</button>
           </div>
         ))}
       </div>
